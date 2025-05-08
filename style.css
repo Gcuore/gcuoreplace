@@ -1,0 +1,18 @@
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 2em;
+  background: #111;
+  color: #eee;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+input[type="file"] {
+  margin-top: 1em;
+}
+a {
+  color: #0ff;
+}
