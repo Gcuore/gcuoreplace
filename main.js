@@ -7,10 +7,17 @@ document.getElementById('fileInput').addEventListener('change', function (e) {
 
   client.seed(file, torrent => {
     const url = location.origin + '/#' + torrent.infoHash;
+
+    const linkContainer = document.getElementById('linkContainer');
+    linkContainer.innerHTML = ''; // Clear previous content
+
     const link = document.createElement('a');
     link.href = url;
     link.textContent = "Link per il download: " + url;
-    document.getElementById('linkContainer').appendChild(link);
+    link.style.display = "block";
+    link.style.marginTop = "1em";
+
+    linkContainer.appendChild(link);
   });
 });
 
@@ -19,11 +26,17 @@ if (location.hash) {
   client.add('magnet:?xt=urn:btih:' + hash, torrent => {
     torrent.files[0].getBlobURL((err, url) => {
       if (err) return console.error(err);
+
       const a = document.createElement('a');
       a.href = url;
       a.download = torrent.files[0].name;
       a.textContent = "Scarica " + torrent.files[0].name;
-      document.body.appendChild(a);
+      a.style.display = "block";
+      a.style.marginTop = "1em";
+
+      const linkContainer = document.getElementById('linkContainer');
+      linkContainer.innerHTML = '';
+      linkContainer.appendChild(a);
     });
   });
 }
